@@ -2,23 +2,41 @@ console.clear();
 
 class musicPlayer {
 	constructor() {
-		this.play = this.play.bind(this);
+		this.audio = new Audio("music.mp3");
+		this.audio.loop = true; // optionnel
+		this.isPlaying = false;
+
 		this.playBtn = document.getElementById('play');
-		this.playBtn.addEventListener('click', this.play);
 		this.controlPanel = document.getElementById('control-panel');
 		this.infoBar = document.getElementById('info');
+		this.progressBar = document.querySelector('.progress-bar .bar');
+
+		// barre de progression
+		this.audio.addEventListener("timeupdate", () => {
+			const progress = (this.audio.currentTime / this.audio.duration) * 100;
+			this.progressBar.style.width = progress + "%";
+		});
+
+		// AUTOPLAY après chargement
+		window.addEventListener("click", () => {
+			if (!this.isPlaying) {
+				this.playMusic();
+			}
+		}, { once: true });
 	}
 
-	play() {
-		let controlPanelObj = this.controlPanel,
-		infoBarObj = this.infoBar
-		Array.from(controlPanelObj.classList).find(function(element){
-					return element !== "active" ? controlPanelObj.classList.add('active') : 		controlPanelObj.classList.remove('active');
-			});
-		
-		Array.from(infoBarObj.classList).find(function(element){
-					return element !== "active" ? infoBarObj.classList.add('active') : 		infoBarObj.classList.remove('active');
-			});
+	playMusic() {
+		this.audio.play();
+		this.isPlaying = true;
+		this.controlPanel.classList.add('active');
+		this.infoBar.classList.add('active');
+	}
+
+	pauseMusic() {
+		this.audio.pause();
+		this.isPlaying = false;
+		this.controlPanel.classList.remove('active');
+		this.infoBar.classList.remove('active');
 	}
 }
 
