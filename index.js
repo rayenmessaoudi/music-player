@@ -2,7 +2,7 @@ console.clear();
 
 class musicPlayer {
 	constructor() {
-		this.audio = new Audio("music.mp3");
+		this.audio = new Audio("audio/track0.mp3");
 		this.audio.loop = true; // optionnel
 		this.isPlaying = false;
 
