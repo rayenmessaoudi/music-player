@@ -17,8 +17,8 @@ new Vue({
       isTimerPlaying: false,
       tracks: [
         {
-          name: "Mekanın Sahibi",
-          artist: "Norm Ender",
+          name: "Xray",
+          artist: "Dima lebnin 3andi :p",
           cover: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/1.jpg",
           source: "https://raw.githubusercontent.com/rayenmessaoudi/music-player/master/audio/track00.mp3",
           url: "https://www.youtube.com/watch?v=z3wAjJXbYzA",
